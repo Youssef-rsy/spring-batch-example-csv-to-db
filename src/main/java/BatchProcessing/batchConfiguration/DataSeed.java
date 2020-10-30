@@ -3,7 +3,6 @@ package BatchProcessing.batchConfiguration;
 import BatchProcessing.models.Collabotor;
 import BatchProcessing.models.PhysicalPerson;
 import BatchProcessing.processors.DataSeedProcessor;
-import BatchProcessing.writers.DataSeedWriter;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -17,15 +16,10 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-
-import java.beans.PropertyEditor;
-import java.beans.PropertyEditorSupport;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 
 @Component
 public class DataSeed {
@@ -41,6 +35,7 @@ public class DataSeed {
     public StepBuilderFactory stepBuilderFactory;
 
     @Autowired
+    @Qualifier("dataSeedWriter")
     private ItemWriter itemWriter;
 
     @Bean

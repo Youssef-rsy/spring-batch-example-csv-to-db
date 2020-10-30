@@ -8,6 +8,7 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,7 @@ public class BatchApplicationRunner implements ApplicationRunner {
     @Autowired
     private JobLauncher jobLauncher;
     @Autowired
+    @Qualifier("purgeJob")
     private Job job;
 
     @Override
