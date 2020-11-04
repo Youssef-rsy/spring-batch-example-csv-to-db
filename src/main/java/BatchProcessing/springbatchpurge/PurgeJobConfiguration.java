@@ -36,14 +36,14 @@ public class PurgeJobConfiguration {
     private ItemReader purgeReader;
 
     @Autowired
-    @Qualifier("purgeWriter")
+    @Qualifier("purgeWriterConfiguration")
     private ItemWriter purgeWriter;
 
 
     @Bean
     public Step purgeJobStep() {
         return stepBuilderFactory.get(STEP_NAME)
-                .<BatchJobInstance, BatchJobInstance>chunk(2)
+                .<Long, Long>chunk(2)
                 .reader(purgeReader)
                 .writer(purgeWriter)
                 .build();
